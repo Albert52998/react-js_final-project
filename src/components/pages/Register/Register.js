@@ -40,7 +40,6 @@ function Register(props) {
     });
 
     if (valid) {
-      console.log(values);
       props.register(values);
     }
   };
