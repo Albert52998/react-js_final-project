@@ -1,0 +1,24 @@
+.checkbox {
+  margin: 9px;
+  width: 12px;
+  height: 12px;
+}
+
+.task {
+  margin: 10px -5px 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.active {
+  border: 2px solid #0965c7;
+}
+
+.done {
+  border: 2px solid #9da1a5;
+}
+
+.checked {
+  border: 2px solid red;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
+}
