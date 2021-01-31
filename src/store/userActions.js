@@ -2,7 +2,7 @@ import request from "../helpers/request";
 import * as actionTypes from "./userActionTypes";
 import { saveJWT, removeJWT, getLocalJWT } from "./../helpers/auth";
 import { history } from "./../helpers/history";
-import { loginRequest, registerRequest /*, logoutRequest  */ } from "../helpers/auth";
+import { loginRequest, registerRequest } from "../helpers/auth";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -43,50 +43,19 @@ export function logout(data) {
     const jwt = getLocalJWT();
 
     if (jwt) {
-      removeJWT();
-      dispatch({ type: actionTypes.LOGOUT_SUCCESS });
-      history.push("/login");
+      request(`${apiUrl}/user/sign-out`, "POST", { jwt })
+        .then(() => {
+          removeJWT();
+          dispatch({ type: actionTypes.LOGOUT_SUCCESS });
+          history.push("/login");
+        })
+        .catch((err) => {
+          dispatch({ type: actionTypes.AUTH_ERROR, error: err.message });
+        });
     } else {
       dispatch({ type: actionTypes.LOGOUT_SUCCESS });
       history.push("/login");
     }
-
-    /* it's not working! (TypeError: Converting circular structure to JSON)
-    ----------------------------------------------------------------------- */
-    // if (jwt) {
-    //   logoutRequest(data)
-    //     .then(() => {
-    //       console.log("DONE!");
-    //       removeJWT();
-    //       dispatch({ type: actionTypes.LOGOUT_SUCCESS });
-    //       history.push("/login");
-    //     })
-    //     .catch((err) => {
-    //       console.log("Error!")
-    //       dispatch({ type: actionTypes.AUTH_ERROR, error: err.message });
-    //     });
-    // } else {
-    //   dispatch({ type: actionTypes.LOGOUT_SUCCESS });
-    //   history.push("/login");
-    // }
-
-    /* it's not working! (500 - Internal Server Error)
-    ----------------------------------------------------------------------- */
-    // if (jwt) {
-    //   request(`${apiUrl}/user/sign-out`, "POST", { jwt })
-    //     .then(() => {
-    //       console.log("DONE!");
-    //       removeJWT();
-    //       dispatch({ type: actionTypes.LOGOUT_SUCCESS });
-    //       history.push("/login");
-    //     })
-    //     .catch((err) => {
-    //       dispatch({ type: actionTypes.AUTH_ERROR, error: err.message });
-    //     });
-    // } else {
-    //   dispatch({ type: actionTypes.LOGOUT_SUCCESS });
-    //   history.push("/login");
-    // }
   };
 }
 
@@ -108,24 +77,13 @@ export function contact(data) {
   return (dispatch) => {
     dispatch({ type: actionTypes.SEND_LOADING });
 
-    if (data) {
-      dispatch({ type: actionTypes.SEND_SUCCESS });
-      data.name = "";
-      data.email = "";
-      data.message = "";
-    } else {
-      dispatch({ type: actionTypes.SEND_ERROR });
-    }
-
-    /* it's not working! (404 - Not Found)
-    ----------------------------------------------------------------------- */
-    // request(`${apiUrl}/form`, "POST", data)
-    //   .then((data) => {
-    //     dispatch({ type: actionTypes.SEND_SUCCESS });
-    //     data = "";
-    //   })
-    //   .catch((err) => {
-    //     dispatch({ type: actionTypes.SEND_ERROR, error: err.message });
-    //   })
+    request(`${apiUrl}/form`, "POST", data)
+      .then(() => {
+        data = "";
+        dispatch({ type: actionTypes.SEND_SUCCESS });
+      })
+      .catch((err) => {
+        dispatch({ type: actionTypes.SEND_ERROR, error: err.message });
+      });
   };
 }

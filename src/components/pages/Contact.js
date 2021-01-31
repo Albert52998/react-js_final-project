@@ -25,8 +25,7 @@ function Contact(props) {
       message: message ? null : "Message is required",
     });
 
-    if (email && message) {
-      console.log(values);
+    if (name && email && message) {
       props.contact(values);
     }
   };

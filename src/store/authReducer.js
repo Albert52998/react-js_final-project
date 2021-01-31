@@ -60,6 +60,26 @@ export const authReducer = (state = defaultState, action) => {
       };
     }
 
+    case actionTypes.SEND_LOADING: {
+      return loadingState;
+    }
+
+    case actionTypes.SEND_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    }
+
+    case actionTypes.SEND_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        successMessage: "You have successfully sent a message!",
+      };
+    }
+
     default:
       return state;
   }

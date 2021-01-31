@@ -64,10 +64,6 @@ export function registerRequest(data) {
   return request(data, "register");
 }
 
-// export function logoutRequest(data) {
-//   return request(data, "logout");
-// }
-
 function request(data, type) {
   const config = {
     method: "POST",
@@ -83,9 +79,6 @@ function request(data, type) {
   } else if (type === "register") {
     url = `${apiUrl}/user`;
   }
-  // else if (type === "logout") {
-  //   url = `${apiUrl}/user/sign-out`;
-  // }
 
   return fetch(url, config)
     .then((response) => response.json())
