@@ -76,10 +76,11 @@ export function getUserInfo() {
 export function contact(data) {
   return (dispatch) => {
     dispatch({ type: actionTypes.SEND_LOADING });
-
     request(`${apiUrl}/form`, "POST", data)
       .then(() => {
-        data = "";
+        data.name = "";
+        data.email = "";
+        data.message = "";
         dispatch({ type: actionTypes.SEND_SUCCESS });
       })
       .catch((err) => {
