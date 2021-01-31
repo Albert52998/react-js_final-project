@@ -25,7 +25,6 @@ function Login(props) {
     });
 
     if (email && password) {
-      console.log(values);
       props.login(values);
     }
   };
