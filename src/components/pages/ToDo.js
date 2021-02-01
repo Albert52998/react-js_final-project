@@ -84,7 +84,7 @@ class ToDo extends PureComponent {
         md={4}
         lg={3}
         xl={2}
-        style={{ flex: "0 0 20%", maxWidth: "20%" }}
+        // style={{ flex: "0 0 20%", maxWidth: "20%" }}
       >
         <Task
           data={task}
