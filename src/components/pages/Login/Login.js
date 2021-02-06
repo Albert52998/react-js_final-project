@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { login } from "../../../store/userActions";
 import styles from "./loginStyle.module.css";
 import { Link } from "react-router-dom";
+import handleKeyDown from "../../../helpers/keyDown";
 
 function Login(props) {
   const [values, setValues] = useState({
@@ -46,7 +47,7 @@ function Login(props) {
       <Container>
         <Row className="justify-content-center">
           <Col xs={12} sm={8} md={6}>
-            <Form>
+            <Form onKeyDown={handleKeyDown(handleSubmit)}>
               <h3 className={styles.heading}>Login</h3>
               <Form.Group>
                 <Form.Control

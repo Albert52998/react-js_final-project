@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { logout } from "./../store/userActions";
 import { connect } from "react-redux";
 import { getUserInfo } from "./../store/userActions";
-import Search from "./Search/Search";
 
 function NavMenu({ isAuthenticated, logout, getUserInfo, user }) {
   useEffect(() => {
@@ -85,48 +84,48 @@ function NavMenu({ isAuthenticated, logout, getUserInfo, user }) {
             </NavLink>
           </Nav>
 
-          <Search />
-        </Navbar.Collapse>
-      </Navbar>
-
-      <div
-        style={{
-          position: "absolute",
-          top: "80px",
-          right: "40px",
-          display: "flex",
-          width: "300px",
-          marginRight: "-15px",
-        }}
-        className="justify-content-center"
-      >
-        {user && (
           <div
             style={{
-              background: "#eeeeee",
-              color: "#000",
-              fontWeight: "500",
-              width: "60%",
+            //   position: "absolute",
+            //   top: "80px",
+            //   right: "40px",
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: "10px",
+              width: "300px",
+              marginRight: "-15px",
             }}
+            className="justify-content-center"
           >
-            <span style={{ marginRight: "5px" }}>{user.name}</span>{" "}
-            <span style={{ marginLeft: "5px" }}>{user?.surname}</span>
+            {user && (
+              <div
+                style={
+                  {
+                    background: "#eeeeee",
+                    color: "#000",
+                    fontWeight: "500",
+                    width: "60%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "10px",
+                  }
+                }
+              >
+                <span style={{ marginRight: "5px" }}>{user.name}</span>{" "}
+                <span style={{ marginLeft: "5px" }}>{user?.surname}</span>
+              </div>
+            )}
+            {isAuthenticated && (
+              <Button
+                variant="success"
+                onClick={logout}
+                style={{ marginLeft: "10px" }}
+              >
+                Logout
+              </Button>
+            )}
           </div>
-        )}
-        {isAuthenticated && (
-          <Button
-            variant="success"
-            onClick={logout}
-            style={{ marginLeft: "10px" }}
-          >
-            Logout
-          </Button>
-        )}
-      </div>
+        </Navbar.Collapse>
+      </Navbar>
     </>
   );
 }

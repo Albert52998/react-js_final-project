@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { register } from "../../../store/userActions";
 import { Link } from "react-router-dom";
 import styles from "./registerStyle.module.css";
+import handleKeyDown from "../../../helpers/keyDown";
 
 function Register(props) {
   const [values, setValues] = useState({
@@ -61,7 +62,7 @@ function Register(props) {
       <Container>
         <Row className="justify-content-center">
           <Col xs={12} sm={8} md={6}>
-            <Form>
+            <Form onKeyDown={handleKeyDown(handleSubmit)}>
               <h3 className={styles.heading}>Register</h3>
               <Form.Group>
                 <Form.Control

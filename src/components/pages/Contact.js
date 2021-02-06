@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { contact } from "../../store/userActions";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import handleKeyDown from "../../helpers/keyDown";
 
 function Contact(props) {
   const [values, setValues] = useState({
@@ -58,7 +59,7 @@ function Contact(props) {
         }}
       >
         <Col xs={12} sm={8} md={6}>
-          <Form>
+          <Form onKeyDown={handleKeyDown(handleSubmit)}>
             <h3 className="text-center">Contact Us</h3>
             <Form.Group style={{ marginTop: "20px" }}>
               <Form.Control

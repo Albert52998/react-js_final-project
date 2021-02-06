@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html, body {
+  min-height: 100vh;
+}
+
 .app {
   outline: 0;
   user-select: none;

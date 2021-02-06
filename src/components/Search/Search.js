@@ -9,6 +9,9 @@ import {
 import { connect } from "react-redux";
 import { getTasks } from "../../store/actions";
 import { shortStr } from "../../helpers/utils";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import handleKeyDown from "../../helpers/keyDown";
 
 const statusOptions = [
   {
@@ -56,6 +59,25 @@ const sortOptions = [
   },
 ];
 
+const dateOptions = [
+  {
+    label: "Create lte",
+    value: "create_lte",
+  },
+  {
+    label: "Create gte",
+    value: "create_gte",
+  },
+  {
+    label: "Complete lte",
+    value: "complete_lte",
+  },
+  {
+    label: "Complete gte",
+    value: "complete_gte",
+  },
+];
+
 function Search(props) {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState({
@@ -97,14 +119,37 @@ function Search(props) {
   };
 
   return (
-    <div className="w-50">
-      <InputGroup>
+    <div style={{position: "absolute", top: "15px", left: "0", right: "0", margin: "0 auto", width: "82%", marginTop: "80px"}}>
+      <InputGroup className="mb-3">
         <FormControl
           placeholder="Search for a task..."
           aria-describedby="basic-addon2"
           onChange={handleInputChange}
           value={search}
+          style={{height: "42px"}}
+          onKeyDown={handleKeyDown(handleSubmit)}
         />
+
+        <DropdownButton
+          as={InputGroup.Append}
+          variant="outline-secondary"
+          title={sort.value ? shortStr(sort.label, 5) : "Date"}
+        >
+          {dateOptions.map((option) => (
+            <div key={option.value} style={{paddingInline: "10px"}}>
+              <span>{option.label}</span>
+              <DatePicker
+                selected={dates[option.value]}
+                onChange={(value) =>
+                  setDates({
+                    ...dates,
+                    [option.value]: value,
+                  })
+                }
+              />
+            </div>
+          ))}
+        </DropdownButton>
 
         <DropdownButton
           as={InputGroup.Append}

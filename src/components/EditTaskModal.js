@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
 import { editTask } from "../store/actions";
 import styles from "./NewTask/newTask.module.css";
+import handleKeyDown from "../helpers/keyDown";
 
 class EditTaskModal extends PureComponent {
   constructor(props) {
@@ -36,13 +37,6 @@ class EditTaskModal extends PureComponent {
     this.setState({
       [type]: value,
     });
-  };
-
-  handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      this.handleSave();
-    }
   };
 
   handleSave = () => {
@@ -112,7 +106,7 @@ class EditTaskModal extends PureComponent {
                 onChange={(event) =>
                   this.handleChange("title", event.target.value)
                 }
-                onKeyDown={this.handleKeyDown}
+                onKeyDown={handleKeyDown(this.handleSave)}
                 placeholder="Title"
                 aria-label="Title"
                 aria-describedby="basic-addon2"

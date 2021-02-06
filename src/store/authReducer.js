@@ -61,7 +61,10 @@ export const authReducer = (state = defaultState, action) => {
     }
 
     case actionTypes.SEND_LOADING: {
-      return loadingState;
+      return {
+        loadingState,
+        isAuthenticated: checkLoginStatus(),
+      };
     }
 
     case actionTypes.SEND_ERROR: {

@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import Search from "../Search/Search";
 import NewTask from "../NewTask/NewTask";
 import Task from "../Task/Task";
 import Confirm from "../Confirm";
@@ -97,6 +98,9 @@ class ToDo extends PureComponent {
 
     return (
       <Container fluid={true}>
+
+        <Search />
+
         <Row>
           <Col
             sm={8}
@@ -104,7 +108,7 @@ class ToDo extends PureComponent {
             xs={12}
             md={{ span: 6, offset: 3 }}
             className="text-center"
-            style={{ flex: "0 0 50%", marginTop: "53px", marginBottom: "20px" }}
+            style={{ flex: "0 0 50%", marginTop: "140px", marginBottom: "40px" }}
           >
             <Button
               variant="primary"
@@ -125,7 +129,7 @@ class ToDo extends PureComponent {
             width: "80%",
             left: "0",
             right: "0",
-            margin: "20px auto 30px auto",
+            margin: "40px auto 20px auto",
           }}
         >
           <Button
