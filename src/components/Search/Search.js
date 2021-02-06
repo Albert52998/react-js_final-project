@@ -130,7 +130,7 @@ function Search(props) {
           onKeyDown={handleKeyDown(handleSubmit)}
         />
 
-        {/*<DropdownButton
+        <DropdownButton
           as={InputGroup.Append}
           variant="outline-secondary"
           title={sort.value ? shortStr(sort.label, 5) : "Date"}
@@ -149,7 +149,7 @@ function Search(props) {
               />
             </div>
           ))}
-        </DropdownButton>*/}
+        </DropdownButton>
 
         <DropdownButton
           as={InputGroup.Append}
