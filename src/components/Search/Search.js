@@ -130,26 +130,26 @@ function Search(props) {
           onKeyDown={handleKeyDown(handleSubmit)}
         />
 
-//         <DropdownButton
-//           as={InputGroup.Append}
-//           variant="outline-secondary"
-//           title={sort.value ? shortStr(sort.label, 5) : "Date"}
-//         >
-//           {dateOptions.map((option) => (
-//             <div key={option.value} style={{paddingInline: "10px"}}>
-//               <span>{option.label}</span>
-//               <DatePicker
-//                 selected={dates[option.value]}
-//                 onChange={(value) =>
-//                   setDates({
-//                     ...dates,
-//                     [option.value]: value,
-//                   })
-//                 }
-//               />
-//             </div>
-//           ))}
-//         </DropdownButton>
+        {/*<DropdownButton
+          as={InputGroup.Append}
+          variant="outline-secondary"
+          title={sort.value ? shortStr(sort.label, 5) : "Date"}
+        >
+          {dateOptions.map((option) => (
+            <div key={option.value} style={{paddingInline: "10px"}}>
+              <span>{option.label}</span>
+              <DatePicker
+                selected={dates[option.value]}
+                onChange={(value) =>
+                  setDates({
+                    ...dates,
+                    [option.value]: value,
+                  })
+                }
+              />
+            </div>
+          ))}
+        </DropdownButton>*/}
 
         <DropdownButton
           as={InputGroup.Append}
