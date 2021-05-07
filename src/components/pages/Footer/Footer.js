@@ -48,7 +48,7 @@ const Footer = () => {
             <li>
               <a
                 className="text-muted"
-                href="https://www.linkedin.com/in/albert-harutyunyan-b73209205/"
+                href="https://www.linkedin.com/in/albert-harutyunyan-1b330b204/"
                 target="_blank"
               >
                 LinkedIn
